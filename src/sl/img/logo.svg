@@ -1,0 +1,26 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(32,32)">
+    <circle fill="white" r="32" />
+    <circle stroke="#4C9ADD" stroke-width="4" fill="none" r="29" />
+
+    <rect x="-13" y="-22" width="8" height="8" fill="#4C9ADD"/>
+    <rect x="-4" y="-22" width="8" height="8" fill="#4C9ADD"/>
+    <rect x="5" y="-22" width="8" height="8" fill="#4C9ADD"/>
+
+    <rect x="-13" y="-13" width="8" height="8" fill="#427BD2"/>
+    <rect x="-4" y="-13" width="8" height="8" fill="#7FB6E6"/>
+    <rect x="5" y="-13" width="8" height="8" fill="#7FB6E6"/>
+
+    <rect x="-13" y="-4" width="8" height="8" fill="#3364C0"/>
+    <rect x="-4" y="-4" width="8" height="8" fill="#3364C0"/>
+    <rect x="5" y="-4" width="8" height="8" fill="#3364C0"/>
+
+    <rect x="-13" y="5" width="8" height="8" fill="#7FB6E6"/>
+    <rect x="-4" y="5" width="8" height="8" fill="#7FB6E6"/>
+    <rect x="5" y="5" width="8" height="8" fill="#2C43B0"/>
+
+    <rect x="-13" y="14" width="8" height="8" fill="#1B2B9B"/>
+    <rect x="-4" y="14" width="8" height="8" fill="#1B2B9B"/>
+    <rect x="5" y="14" width="8" height="8" fill="#1B2B9B"/>
+</g>
+</svg>

@@ -1,0 +1,38 @@
+:root {
+  /* colours */
+  --white: #fff;
+  --red: #e30613;
+  --green: #17b471;
+  --dkgreen: #17b471;
+  --blue: #1f55a3;
+  --sea: #004a96;
+  --amber: #fdc00f;
+  --gray: #dbe1e8;
+  --bggray: #eaeef3;
+  --dkgray: #414141;
+  --medgray: #9f9f9f;
+  --black: #1c1c1c;
+
+  /* fg/bg */
+  --body-fg: var(--blue);
+  --body-bg: var(--white);
+  --hf-fg: var(--white); /* header/footer */
+  --hf-bg: var(--sea);
+  --aside-fg: var(--white);
+  --aside-bg: var(--blue);
+
+  /* scrollbars */
+  --sb-fg: var(--gray);
+  --sb-bg: var(--white);
+
+  /* font size */
+  --tx-small: 0.88rem;
+  --tx-medium: 1.06rem;
+  --tx-large: 1.3rem;
+
+  /* font weight */
+  --tx-300: 300;
+  --tx-400: 400;
+  --tx-500: 500;
+  --tx-800: 800;
+}

@@ -1,0 +1,79 @@
+:root {
+  --hd-hgt: 2rem;
+  --ft-hgt: 2rem;
+  --aside-wdt: 14rem;
+}
+
+/* layout */
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  color: var(--body-fg);
+  background: var(--body-bg);
+}
+
+body {
+  > aside,
+  > main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > header {
+      height: var(--hd-hgt);
+      color: var(--hf-fg);
+      background: var(--hf-bg);
+
+      #menu {
+        display: none;
+      }
+    }
+
+    > footer {
+      height: var(--ft-hgt);
+      color: var(--hf-fg);
+      background: var(--hf-bg);
+    }
+  }
+
+  > aside {
+    width: var(--aside-wdt);
+    color: var(--aside-fg);
+    background: var(--aside-bg);
+  }
+
+  > main {
+    flex: 1;
+  }
+
+  > aside > nav,
+  > main > article {
+    flex: 1;
+    overflow-y: scroll;
+  }
+}
+
+body.MOBILE {
+  > aside,
+  > main {
+    > header #menu {
+      display: block;
+    }
+  }
+
+  > aside {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+}
