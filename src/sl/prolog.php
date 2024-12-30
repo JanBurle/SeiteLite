@@ -29,8 +29,13 @@ define('PGS', ROOT . 'pages/');                   // autoloaded page classes
 define('TPL', SL   . 'tpl/');                     // html templates
 
 // url paths
-check(0 === strpos(SL, ROOT));
-define('SLU', '/' . substr(SL, strlen(ROOT)));    // SeiteLite url
+function relPath(string $val, string $prefix): string
+{
+  check(0 === strpos($val, $prefix));
+  return substr($val, strlen($prefix));
+}
+
+define('SLU', '/' . relPath(SL, ROOT));         // SeiteLite url
 
 // include file if exists
 function incFile(string $file, $tag = ''): bool

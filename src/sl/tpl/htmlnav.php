@@ -6,6 +6,7 @@
     <span id="menu">⬅️</span>
   </header>
   <nav>
+    <?= $this->nav ?>
   </nav>
   <footer>
   </footer>
