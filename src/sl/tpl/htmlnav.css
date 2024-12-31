@@ -25,10 +25,14 @@ body {
     display: flex;
     flex-direction: column;
 
-    > header {
-      height: var(--hd-hgt);
+    > header,
+    > footer {
       color: var(--hf-fg);
       background: var(--hf-bg);
+    }
+
+    > header {
+      height: var(--hd-hgt);
 
       #menu {
         display: none;
@@ -37,8 +41,6 @@ body {
 
     > footer {
       height: var(--ft-hgt);
-      color: var(--hf-fg);
-      background: var(--hf-bg);
     }
   }
 

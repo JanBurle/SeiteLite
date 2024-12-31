@@ -8,7 +8,8 @@ class Site // the base class for all pages
   var $lang   = 'en';                 // language
   var $logo   = SLU . 'img/logo.svg'; // logo/icon
   var $css    = SLU . 'css/main.css'; // main css
-  var $js     = SLU . 'js/main.js';   // main js
+  var $headjs = SLU . 'js/head.js';   // main js
+  var $footjs = SLU . 'js/foot.js';   // main js
 
   // meta tags
   var $description  = '';

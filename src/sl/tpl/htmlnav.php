@@ -1,9 +1,9 @@
 <? $tplName = basename(__FILE__, '.php') ?>
-<? include __DIR__ . '/tpl-head.inc' ?>
+<? include __DIR__ . '/inc/head.php' ?>
 
 <aside>
   <header>
-    <span id="menu">⬅️</span>
+    <span id="menu"><s-icon>arrow-left</s-icon></span>
   </header>
   <nav>
     <?= $this->nav ?>
@@ -14,7 +14,7 @@
 
 <main>
   <header>
-    <span id="menu">☰</span>
+    <span id="menu"><s-icon>menu</s-icon></span>
   </header>
   <article>
     <?= $this->body ?>
@@ -23,5 +23,4 @@
   </footer>
 </main>
 
-
-<? include __DIR__ . '/tpl-foot.inc' ?>
+<? include __DIR__ . '/inc/foot.php' ?>

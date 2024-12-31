@@ -5,6 +5,23 @@ function isDev(): bool
   return ini_get('display_errors');
 }
 
+// cache busting
+function bust(): string
+{
+  return isDev() ? '?bust=' . time() : '';
+}
+
+?>
+<script>
+  let ll = (...args) => {
+    <? if (isDev()) {
+      echo 'console.log(...args);';
+    } ?>
+    return args[0]
+  }
+</script>
+<?
+
 // Run-time error checking
 class CheckException extends Exception {}
 
