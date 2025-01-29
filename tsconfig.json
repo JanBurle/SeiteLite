@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["./public/sl/ts", "./public/sl/els"]
+}

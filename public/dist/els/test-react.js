@@ -1,0 +1,1 @@
+class _ extends ShadowElem{static reattrs=["clr"];span;init(){this.span=this.qSel("span"),this.qSel("button").onclick=()=>this.inc()}inc(){this.rv.val=this.rv.val+1}revar(){this.span.textContent=this.rv.val}reatr(t,s){if(this.intAttr(t,s),"clr"===t)this.style.background=s}}

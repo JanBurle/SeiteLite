@@ -1,0 +1,1 @@
+class _ extends ShadowElem{constructor(){super();let t=this.attr0();this.qSel("svg").fetchIcon(t)}}

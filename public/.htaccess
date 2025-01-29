@@ -1,0 +1,23 @@
+php_value short_open_tag 1
+
+Options All -Indexes
+Header set Expires "access plus 2 hours"
+
+# no access to hidden files
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+RewriteEngine On
+
+# serve existing files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Match any URL with a 1-4 letter extension and return 404
+RewriteCond %{REQUEST_URI} \.[a-zA-Z0-9]{1,4}$ [NC]
+RewriteRule ^ - [R=404,L]
+
+# rewrite path into query
+RewriteRule ^(.*)$ "/index.php?path=$1" [END,QSA,B]

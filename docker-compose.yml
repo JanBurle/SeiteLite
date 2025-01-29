@@ -1,0 +1,9 @@
+services:
+  webserver:
+    container_name: seitelite
+    build:
+      dockerfile: tools/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./public:/var/www/html

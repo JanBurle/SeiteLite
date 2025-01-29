@@ -1,0 +1,24 @@
+{
+  "name": "seitelite",
+  "version": "1.0.0",
+  "description": "A website framework. ASAPPLE: As simple as possible, practical, lightweight, efficient.",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "node tools/purge.js && npm-run-all build:dts build:ts build:els && node tools/minify.js",
+    "watch": "node tools/purge.js && npm-run-all --parallel watch:dts watch:ts watch:els",
+    "build:dts": "tsc -p public/sl/ts/dts.json",
+    "build:ts": "tsc -p public/sl/ts/ts.json",
+    "build:els": "tsc -p public/sl/els/ts.json",
+    "watch:dts": "tsc -p public/sl/ts/dts.json --watch",
+    "watch:ts": "tsc -p public/sl/ts/ts.json --watch",
+    "watch:els": "tsc -p public/sl/els/ts.json --watch"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
+    "npm-run-all": "^4.1.5",
+    "terser": "^5.37.0",
+    "typescript": "^5.7.3"
+  },
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+}

@@ -1,0 +1,3 @@
+[submodule "public/sl"]
+	path = public/sl
+	url = git@github.com:JanBurle/SL-core.git
