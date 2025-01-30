@@ -1,5 +1,7 @@
 # SeiteLite /ˈzaɪtəˌlaɪt/
 
+_**Under construction**_
+
 A framework for building websites with just vanilla PHP, HTML, CSS, and Type/JavaScript.
 
 ASAPPLE 🍎: As simple as possible, practical, lightweight, efficient.
@@ -32,7 +34,7 @@ This repository serves as an example. The core part of the framework is in
 
 ### Docker
 
-A develoment environment is provided in the `docker-compose.yml` and `tools/Dockerfile`
+A development environment is provided in the `docker-compose.yml` and `tools/Dockerfile`
 files.
 
 Start the environment with
