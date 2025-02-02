@@ -1,6 +1,6 @@
 services:
-  webserver:
-    container_name: seitelite
+  vm:
+    container_name: seitelite-vm
     build:
       dockerfile: tools/Dockerfile
     ports:
