@@ -45,6 +45,23 @@ var cl = (...args) => {
 })();
 ;
 (() => {
+    let p = Number.prototype;
+    p.isInt = function () {
+        return Number.isInteger(this.valueOf());
+    };
+    p.clamp = function (min, max) {
+        return Math.max(min, Math.min(this, max));
+    };
+    p.genArr = function (f) {
+        return Array.from({ length: this }, (_, i) => f(i, this));
+    };
+    p.loop = function (f) {
+        for (let i = 0; i < this; i++)
+            f(i, this);
+    };
+})();
+;
+(() => {
     let p = String.prototype;
     p.toNum = function (def = 0) {
         let int = parseFloat(this);

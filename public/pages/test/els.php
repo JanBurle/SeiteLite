@@ -14,6 +14,24 @@ $p = new class extends Page {
 
 <hr>
 
+<f-row>
+  <button onclick="chgVal(-0.3)"> - </button>
+  <s-rating val='3.1'></s-rating>
+  <button onclick="chgVal(0.4)"> + </button>
+</f-row>
+
+<script>
+  let val = 3.1
+  let rating = doc.qSel('s-rating')
+
+  let chgVal = (d) => {
+    val = (val + d).clamp(0, 5)
+    rating.setAttr('val', val)
+  }
+</script>
+
+<hr>
+
 <script>
   SLG.reVars['tr'] = new ReVar(1)
 </script>
