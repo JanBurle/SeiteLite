@@ -5,12 +5,17 @@ $p = new class extends Page {
 
 <hr>
 
-<s-btn icon='meh'>menu</s-btn>
+<f-col>
+  <s-btn go="https://db.de">db.de</s-btn>
+  <s-btn icon='meh' onclick="alert('meh')"></s-btn>
+  <s-btn>menu</s-btn>
+  <s-btn icon='meh'>menu</s-btn>
+</f-col>
 
 <hr>
 
 <script>
-  window.$reVars['tr'] = new ReVar(1)
+  SLG.reVars['tr'] = new ReVar(1)
 </script>
 <f-row>
   <f-col>

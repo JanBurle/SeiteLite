@@ -7,7 +7,6 @@ $conf = [
 
 // route
 $route = [
-  'book'    => 'book',
   'test'    => [
     'els'   => 'test/els',
     'icons' => 'test/icons',

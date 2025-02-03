@@ -1,1 +1,337 @@
-var SL,isDev,bust,doc=document,win=window,cl=(...t)=>(isDev&&console.log(...t),t[0]);(()=>{let t=Object.prototype;t.isStr=function(){return this instanceof String},t.isFun=function(){return this instanceof Function},t.asArr=function(){return Array.isArray(this)?this:[this]},t.toArr=function(){return Array.from(this)}})(),(()=>{let t=String.prototype;t.toNum=function(t=0){let e=parseFloat(this);return isNaN(e)?t:e},t.toInt=function(t=0){let e=parseInt(this);return isNaN(e)?t:e},t.toObj=function(t){try{return JSON.parse(this)}catch(e){return t}},t.toEl=function(){let t=doc.createElement("div");return t.innerHTML=this,t.firstChild}})(),(()=>{let t=Set.prototype;t.dif=function(t){return new Set([...this].filter((e=>!t.has(e))))},t.uni=function(t){return new Set([...this,...t])}})(),(()=>{Node.prototype.apd=t=>{let e=t.isStr()?doc.createElement(t):t;return this.appendChild(e)}})(),(()=>{let t=Element.prototype;t.cls=function(){return this.classList.toArr()},t.cla=function(t){for(let e of t.asArr())this.classList.add(e);return this},t.tgl=function(t,e){return this.classList.toggle(t,e),this},t.clk=function(t){return this.addEventListener("click",t),this}})(),(()=>{let t=Document.prototype;t.whenDone=t=>doc.addEventListener("DOMContentLoaded",t),t.qSel=t=>doc.body.querySelector(t),t.qAll=t=>doc.body.querySelectorAll(t),t.qId=e=>t.qSel("#"+e)})(),doc.whenDone((()=>{let t=win.matchMedia("(max-width: 650px)"),e=win.matchMedia("(max-width: 1023px)"),s=(t,e)=>doc.body.tgl(t,e);s("MBL",t.matches),s("TBL",e.matches),t.addEventListener("change",(t=>s("MBL",t.matches))),e.addEventListener("change",(t=>s("TBL",t.matches)))}));class ReVar{_val;constructor(t){this._val=t}get val(){return this._val}set val(t){this._val!=t&&(this._val=t),this.notify()}_subd=new Set;sub(t){this._subd.add(t)}unsub(t){this._subd.delete(t)}notify(){this._subd.forEach((t=>t.isFun()?t(this._val):t.revar()))}}var $reVars={};class _Elem extends HTMLElement{root;rv;constructor(){super(),this.rv=$reVars[this.attr("$")]||new ReVar(0)}connectedCallback(){this.rv.sub(this),this.init(),this.revar()}disconnectedCallback(){this.rv.unsub(this),this.done()}init(){}done(){}revar(){}hasAttr(t){return this.hasAttribute(t)}attr(t,e=""){return this.getAttribute(t)??e}attr0(){for(let t of this.attributes)if(!t.value)return t.name;return""}numAttr(t,e=0){return this.attr(t).toNum(e)}intAttr(t,e=0){return this.attr(t).toInt(e)}objAttr(t,e=null){return this.attr(t).toObj(e)}setAttr(t,e=""){this.setAttribute(t,e)}remAttr(t){this.removeAttribute(t)}tglAttr(t,e){void 0===e&&(e=!this.hasAttr(t)),e?this.setAttr(t):this.remAttr(t)}qSel(t){return this.root.querySelector(t)}qAll(t){return this.root.querySelectorAll(t)}qId(t){return this.qSel("#"+t)}slotNodes(){return this.qSel("slot").assignedNodes()}slotTags(t){let e=this.slotNodes();return t=t.toUpperCase(),e.filter((e=>t==e.nodeName))}slotText(t="",e=""){return(t?this.slotTags(t):this.slotNodes())[0]?.textContent||e}slotNum(t="",e=0){return this.slotText(t).toNum(e)}slotInt(t="",e=0){return this.slotText(t).toInt(e)}slotObj(t="",e=null){return this.slotText(t).toObj(e)}qSlot(t){return this.querySelector(t)}_el(t){return t.isStr()?this.qSel(t):t}_slotEl(t){return t.isStr()?this.qSlot(t):t}apdRoot(t){return this.root.apd(t)}move(t,e){this._el(t).appendChild(this._slotEl(e))}set(t,e){this._el(t).innerHTML=e}setPos(t,e){this.style.left=t+"px",this.style.top=e+"px"}onWidth(t){new ResizeObserver((e=>{let{clientWidth:s}=e[0].target;t(s)})).observe(this)}onView(t){new IntersectionObserver(((e,s)=>{0<e[0].intersectionRatio&&(s.disconnect(),t())})).observe(this)}static reattrs=[];static get observedAttributes(){return this.reattrs}attributeChangedCallback(t,e,s){e!=s&&this.reatr(t,s)}reatr(t,e){}}let shadowStyle=new CSSStyleSheet;for(let t of doc.styleSheets)if("shadow"==t.title)for(let e of t.cssRules)shadowStyle.insertRule(e.cssText);class ShadowElem extends _Elem{constructor(){super(),this.root=this.attachShadow({mode:"open"});let t=this.constructor.tag,e=doc.qId(t).content;this.root.appendChild(e.cloneNode(!0)),this.root.adoptedStyleSheets=[shadowStyle]}}class LightElem extends _Elem{constructor(){super(),this.root=this;let t=this.constructor.tag,e=doc.qId(t)?.content;e&&doc.body.appendChild(e),this.init()}}let defElem=(t,e)=>{e.tag=t,customElements.define(t,e)};(()=>{let t={},e=(e,s)=>{let r=t[s];return r&&e.replaceWith(r.toEl().cla(e.cls())),!!r};Element.prototype.fetchIcon=function(s){s&&(e(this,s)||fetch(SL+`assets/icons/${s}.svg`+bust).then((t=>t.text())).then((r=>{t[s]=r.replace(' class="',' class="icon ').replace("</svg>","<title></title></svg>"),e(this,s)})))}})(),doc.whenDone((()=>doc.body.cla("ready")));
+var doc = document;
+var win = window;
+var SLG;
+SLG.go = (loc, newTab = false) => {
+    if (newTab)
+        win.open(loc, '_blank');
+    else {
+        let [path, id] = loc.split('#');
+        if (location.pathname == path) {
+            let q = doc.qId(id);
+            q
+                ? q.scrollIntoView({
+                    behavior: 'smooth',
+                })
+                : win.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                });
+        }
+        else {
+            location.assign(loc);
+        }
+    }
+};
+var cl = (...args) => {
+    if (SLG.isDev)
+        console.log(...args);
+    return args[0];
+};
+;
+(() => {
+    let p = Object.prototype;
+    p.isStr = function () {
+        return this instanceof String;
+    };
+    p.isFun = function () {
+        return this instanceof Function;
+    };
+    p.asArr = function () {
+        return Array.isArray(this) ? this : [this];
+    };
+    p.toArr = function () {
+        return Array.from(this);
+    };
+})();
+;
+(() => {
+    let p = String.prototype;
+    p.toNum = function (def = 0) {
+        let int = parseFloat(this);
+        return isNaN(int) ? def : int;
+    };
+    p.toInt = function (def = 0) {
+        let int = parseInt(this);
+        return (isNaN(int) ? def : int);
+    };
+    p.toObj = function (def) {
+        try {
+            return JSON.parse(this);
+        }
+        catch (err) {
+            return def;
+        }
+    };
+    p.toEl = function () {
+        let div = doc.createElement('div');
+        div.innerHTML = this;
+        return div.firstChild;
+    };
+})();
+;
+(() => {
+    let p = Set.prototype;
+    p.dif = function (that) {
+        return new Set([...this].filter((x) => !that.has(x)));
+    };
+    p.uni = function (that) {
+        return new Set([...this, ...that]);
+    };
+})();
+;
+(() => {
+    let p = Node.prototype;
+    p.apd = function (elTag) {
+        let el = elTag.isStr() ? doc.createElement(elTag) : elTag;
+        return this.appendChild(el);
+    };
+})();
+;
+(() => {
+    let p = Element.prototype;
+    p.cls = function () {
+        return this.classList.toArr();
+    };
+    p.cla = function (cs) {
+        for (let c of cs.asArr())
+            this.classList.add(c);
+        return this;
+    };
+    p.tgl = function (cls, on) {
+        this.classList.toggle(cls, on);
+        return this;
+    };
+    p.clk = function (f) {
+        this.addEventListener('click', f);
+        return this;
+    };
+})();
+;
+(() => {
+    let p = Document.prototype;
+    p.whenDone = (fn) => doc.addEventListener('DOMContentLoaded', fn);
+    p.qSel = (sel) => doc.body.querySelector(sel);
+    p.qAll = (sel) => doc.body.querySelectorAll(sel);
+    p.qId = (id) => p.qSel('#' + id);
+})();
+doc.whenDone(() => {
+    let mobile = '650px';
+    let tablet = '1023px';
+    let mobileMatch = win.matchMedia(`(max-width: ${mobile})`);
+    let tabletMatch = win.matchMedia(`(max-width: ${tablet})`);
+    let clsMobile = 'MBL';
+    let clsTablet = 'TBL';
+    let set = (cls, val) => doc.body.tgl(cls, val);
+    set(clsMobile, mobileMatch.matches);
+    set(clsTablet, tabletMatch.matches);
+    mobileMatch.addEventListener('change', (e) => set(clsMobile, e.matches));
+    tabletMatch.addEventListener('change', (e) => set(clsTablet, e.matches));
+});
+class ReVar {
+    _val;
+    constructor(val) {
+        this._val = val;
+    }
+    get val() {
+        return this._val;
+    }
+    set val(val) {
+        if (this._val != val)
+            this._val = val;
+        this.notify();
+    }
+    _subd = new Set();
+    sub(f) {
+        this._subd.add(f);
+    }
+    unsub(f) {
+        this._subd.delete(f);
+    }
+    notify() {
+        this._subd.forEach((f) => f.isFun() ? f(this._val) : f.revar());
+    }
+}
+SLG.reVars = {};
+class _Elem extends HTMLElement {
+    root;
+    rv;
+    constructor() {
+        super();
+        this.rv = SLG.reVars[this.attr('$')] || new ReVar(0);
+        let attr;
+        if ((attr = this.attr('go')))
+            this.onclick = (e) => SLG.go(attr, e.ctrlKey || this.hasAttr('blank'));
+    }
+    connectedCallback() {
+        this.rv.sub(this);
+        this.init();
+        this.revar();
+    }
+    disconnectedCallback() {
+        this.rv.unsub(this);
+        this.done();
+    }
+    init() { }
+    done() { }
+    revar() { }
+    hasAttr(attr) {
+        return this.hasAttribute(attr);
+    }
+    attr(attr, def = '') {
+        return this.getAttribute(attr) ?? def;
+    }
+    attr0() {
+        for (let attr of this.attributes)
+            if (!attr.value)
+                return attr.name;
+        return '';
+    }
+    numAttr(attr, def = 0) {
+        return this.attr(attr).toNum(def);
+    }
+    intAttr(attr, def = 0) {
+        return this.attr(attr).toInt(def);
+    }
+    objAttr(attr, def = null) {
+        return this.attr(attr).toObj(def);
+    }
+    setAttr(attr, val = '') {
+        this.setAttribute(attr, val);
+    }
+    remAttr(attr) {
+        this.removeAttribute(attr);
+    }
+    tglAttr(attr, on) {
+        if (undefined === on)
+            on = !this.hasAttr(attr);
+        on ? this.setAttr(attr) : this.remAttr(attr);
+    }
+    qSel(sel) {
+        return this.root.querySelector(sel);
+    }
+    qAll(sel) {
+        return this.root.querySelectorAll(sel);
+    }
+    qId(id) {
+        return this.qSel('#' + id);
+    }
+    slotNodes() {
+        return this.qSel('slot').assignedNodes();
+    }
+    slotTagNodes(tag) {
+        let nodes = this.slotNodes();
+        tag = tag.toUpperCase();
+        return nodes.filter((node) => tag == node.nodeName);
+    }
+    slotText(tag = '', def = '') {
+        return (tag ? this.slotTagNodes(tag) : this.slotNodes())[0]?.textContent || def;
+    }
+    slotNum(tag = '', def = 0) {
+        return this.slotText(tag).toNum(def);
+    }
+    slotInt(tag = '', def = 0) {
+        return this.slotText(tag).toInt(def);
+    }
+    slotObj(tag = '', def = null) {
+        return this.slotText(tag).toObj(def);
+    }
+    qSlot(sel) {
+        return this.querySelector(sel);
+    }
+    _el(elTag) {
+        return elTag.isStr() ? this.qSel(elTag) : elTag;
+    }
+    _slotEl(elTag) {
+        return elTag.isStr() ? this.qSlot(elTag) : elTag;
+    }
+    apdRoot(elTag) {
+        return this.root.apd(elTag);
+    }
+    move(toElTag, el) {
+        this._el(toElTag).appendChild(this._slotEl(el));
+    }
+    setHtml(elTag, html) {
+        this._el(elTag).innerHTML = html;
+    }
+    setPos(left, top) {
+        this.style.left = left + 'px';
+        this.style.top = top + 'px';
+    }
+    onWidth(cb) {
+        new ResizeObserver((els) => {
+            let { clientWidth } = els[0].target;
+            cb(clientWidth);
+        }).observe(this);
+    }
+    onView(cb) {
+        new IntersectionObserver((els, observer) => {
+            if (0 < els[0].intersectionRatio) {
+                observer.disconnect();
+                cb();
+            }
+        }).observe(this);
+    }
+    static reAttrs = [];
+    static get observedAttributes() {
+        return this.reAttrs;
+    }
+    attributeChangedCallback(name, oldVal, newVal) {
+        if (oldVal != newVal)
+            this.reatr(name, newVal);
+    }
+    reatr(name, val) { }
+}
+let shadowStyle = new CSSStyleSheet();
+for (let sheet of doc.styleSheets) {
+    if ('shadow' == sheet.title)
+        for (let rule of sheet.cssRules)
+            shadowStyle.insertRule(rule.cssText);
+}
+class ShadowElem extends _Elem {
+    constructor() {
+        super();
+        this.root = this.attachShadow({ mode: 'open' });
+        let tplId = this.constructor.tag;
+        let tpl = doc.qId(tplId).content;
+        this.root.appendChild(tpl.cloneNode(true));
+        this.root.adoptedStyleSheets = [shadowStyle];
+    }
+}
+class LightElem extends _Elem {
+    constructor() {
+        super();
+        this.root = this;
+        let tplId = this.constructor.tag;
+        let tpl = doc.qId(tplId)?.content;
+        tpl && doc.body.appendChild(tpl);
+    }
+}
+let defElem = (tag, cls) => {
+    cls.tag = tag;
+    customElements.define(tag, cls);
+};
+;
+(() => {
+    let iconCache = {};
+    let iconFromCache = (el, icon) => {
+        let html = iconCache[icon];
+        if (html)
+            el.replaceWith(html.toEl().cla(el.cls()));
+        return !!html;
+    };
+    let p = Element.prototype;
+    p.fetchIcon = function (icon) {
+        if (!icon)
+            return;
+        iconFromCache(this, icon) ||
+            fetch(SLG.SL + `assets/icons/${icon}.svg` + SLG.bust)
+                .then((res) => res.text())
+                .then((html) => {
+                iconCache[icon] = html
+                    .replace(' class="', ' class="icon ')
+                    .replace('</svg>', `<title></title></svg>`);
+                iconFromCache(this, icon);
+            });
+    };
+})();
+doc.whenDone(() => doc.body.cla('ready'));
