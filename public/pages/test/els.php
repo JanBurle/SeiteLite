@@ -1,5 +1,6 @@
 <?
 $p = new class extends Page {
+  var $title = 'Els';
 }
 ?>
 

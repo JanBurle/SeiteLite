@@ -1,3 +1,6 @@
 [submodule "public/sl"]
 	path = public/sl
 	url = git@github.com:JanBurle/SL-core.git
+[submodule "public/cm"]
+	path = public/cm
+	url = git@github.com:JanBurle/CompactMarkup.git

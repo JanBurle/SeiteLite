@@ -29,6 +29,7 @@ This repository serves as an example. The core part of the framework is in
 1. Clone this repository.
 2. Run `git submodule init` and `git submodule update`.
 3. Start a web server in the `public/` directory.
+<!-- git submodule add git@github.com:JanBurle/SL-core.git public/sl -->
 
 ## Development
 

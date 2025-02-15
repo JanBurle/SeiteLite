@@ -10,6 +10,7 @@ $route = [
   'test'    => [
     'els'   => 'test/els',
     'icons' => 'test/icons',
+    'mx' => 'test/mx',
   ],
 ];
 
